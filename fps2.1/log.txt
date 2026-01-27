@@ -1,0 +1,3 @@
+ddddnew log data appneded here at 2:00PM  
+
+[TAG: INFO] new log data appneded here at 2:00P [PRIRITY: INFO]
