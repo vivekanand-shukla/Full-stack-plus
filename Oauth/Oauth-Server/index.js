@@ -58,13 +58,13 @@ app.get("/auth/google" , (req,res)=>{
 })
 
 app.get("/auth/google/callback", async(req,res)=>{
-      console.log("QUERY:", req.query)
+    //   console.log("QUERY:", req.query)
     const {code} = req.query
     
     if(!code){
         return res.status(400).send("Auterization code is not provided")
     }
-    let acessToken ;
+    let accessToken ;
 
 
     try {
@@ -83,13 +83,16 @@ app.get("/auth/google/callback", async(req,res)=>{
        }
     
     )
-    acessToken= tokenResponse.data.access_token
 
-    res.cookie("access_Token",  acessToken)
+
+    accessToken = tokenResponse.data.access_token
+res.cookie("access_token", accessToken)
     return res.redirect(`${process.env.FRONTEND_URL}/v1/profile/google`)
         
     } catch (error) {
+
          console.error(error)
+         return res.status(500).send("Authentication failed" , error)
     }
 
 })
