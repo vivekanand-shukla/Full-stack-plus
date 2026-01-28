@@ -4,11 +4,11 @@ function setSecureCookie(res ,token){
    res.cookie("access_token" , token , {
     // httpOnly :true,
     maxAge: 60 * 60 * 1000,
-    sameSite: 'lax'
+  
       
    })
 
-   return res
+//    return res
 }
 module.exports ={
     setSecureCookie
