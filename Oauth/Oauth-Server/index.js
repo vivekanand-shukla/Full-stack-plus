@@ -1,10 +1,17 @@
+const cookieParser = require("cookie-parser")
 const express = require("express")
 const axios = require("axios")
 const cors = require("cors")
 require("dotenv").config()
 const app = express()
 const PORT = process.env.PORT || 4000;
-app.use(cors())
+const {setSecureCookie} = require("./services/index.js")
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}))
+app.use(cookieParser())
+
 app.get("/" , (req,res)=>{
     res.send(`<h1> Welcome to OAuth Api server </h1>`)
 
@@ -40,7 +47,8 @@ app.get('/auth/github/callback' ,async(req,res)=>{
 
 )
 const accessToken = tokenResponse.data.access_token
-res.cookie("access_token",accessToken )
+// res.cookie("access_token",accessToken )
+setSecureCookie(res ,accessToken)
 return res.redirect(`${process.env.FRONTEND_URL}/v1/profile/github`)
 
     } catch (error) {
@@ -86,7 +94,8 @@ app.get("/auth/google/callback", async(req,res)=>{
 
 
     accessToken = tokenResponse.data.access_token
-res.cookie("access_token", accessToken)
+// res.cookie("access_token", accessToken)
+setSecureCookie(res ,accessToken)
     return res.redirect(`${process.env.FRONTEND_URL}/v1/profile/google`)
         
     } catch (error) {
