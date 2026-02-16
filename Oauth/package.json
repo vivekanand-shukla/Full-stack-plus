@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "concurrently \"cd Oauth-Server &&  npm i\" \"cd oauth-frontend && npm i\"",
-    "dev": "concurrently \"cd Oauth-Server &&  npm run dev\" \"cd oauth-frontend && npm run dev\"",
+    "install": "concurrently \"cd Oauth-Server &&  npm i\" \"cd vite-project && npm i\"",
+    "dev": "concurrently \"cd Oauth-Server &&  npm run dev\" \"cd vite-project && npm run dev\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^9.2.1"
+    "axios": "^1.13.5",
+    "concurrently": "^9.2.1",
+    "react-router-dom": "^7.13.0"
   }
 }
